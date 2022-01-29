@@ -1,6 +1,6 @@
 /*
 * Title: Antropometry calculator
-* Description: Script used to calculate antropometries
+* Description: Script used to calculate anthropometries
 * Author: Nicolás Esteban Olmedo
 */
 
@@ -9,10 +9,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //function centimeterToMeterConverter to convert data from cm to m
-const centimeterToMeterConverter = (_height) => { return (_height/100)};
+const centimeterToMeterConverter = (_height) => { return (_height/100);};
 
 //function calcIMC to calculate IMC
-const calcIMC = (_height, _weight) => { return (_weight / Math.pow(centimeterToMeterConverter(_height),2))};
+const calcIMC = (_height, _weight) => { return (_weight / Math.pow(centimeterToMeterConverter(_height),2));};
 
 //function printLine to print a line of 20 asteriscs
 function printLine(){
@@ -27,6 +27,7 @@ function printLine(){
 //function verifyInput to verify the input type is correct
 function verifyInput(_type, _message){
   let _input = prompt(_message);
+  const _average = [];
 
   switch (_type) {
     case "string":
@@ -35,26 +36,17 @@ function verifyInput(_type, _message){
       _input = prompt(_message);
     }//end of while
     return _input;
-    break;
 
     case "number":
-    while(isNaN(_input)){
+    while(isNaN(_input) || (_input <= 0) || (_input == "")) {
       console.log("Ingresar un valor numérico");
       _input = prompt(_message);
     }//end of while
-    while(_input <= 0){
-      console.log("Ingresar un valor numérico");
-      _input = prompt(_message);
-    }//end of while
-    while(_input == ""){
-      console.log("Ingresar un valor numérico");
-      _input = prompt(_message);
-    }// end of while
     return _input;
-    break;
 
     default:
-    console.log("No deberías estar acá, por favor reportalo.");
+      console.log("No deberías estar acá, por favor reportalo.");
+      break;
   }//end of switch
 }//end of verifyInput function
 
@@ -66,6 +58,7 @@ function dataOutput(_person){
 }//end of function
 
 ////////////////////////////////////////////////////////////////////////////////
+//Here come the classes
 ////////////////////////////////////////////////////////////////////////////////
 
 //class Person that symbolizes a single person
@@ -86,13 +79,13 @@ class Person {
 console.log("Bienvenido a la calculadora de antropometrías");
 
 let option, isValid;
-option = prompt("Ingresar 1 para ejecutar o cualquier otra tecla para salir")
+option = prompt("Ingresar 1 para ejecutar o cualquier otra tecla para salir");
 
 do {
   if (option == 1) {
     const person = new Person();
     dataOutput(person);
-    option = prompt("Ingresar 1 para ejecutar el programa o 0 para salir")
+    option = prompt("Ingresar 1 para ejecutar el programa o cualquier otra tecla para salir");
   }//end of if
   else{
     break;
