@@ -26,23 +26,30 @@ function printLine(){
 
 //function verifyInput to verify the input type is correct
 function verifyInput(_type, _message){
-  let _input = prompt(_message);
-  const _average = [];
+  let _acc, _input;
+  const _arrayValues = new Array(1);
 
   switch (_type) {
     case "string":
+    let _input = prompt(_message);
     while(_input == ""){
-      console.log("Ingresar un valor numérico");
+      console.log("Ingresar nombre");
       _input = prompt(_message);
     }//end of while
     return _input;
 
     case "number":
-    while(isNaN(_input) || (_input <= 0) || (_input == "")) {
-      console.log("Ingresar un valor numérico");
-      _input = prompt(_message);
-    }//end of while
-    return _input;
+    console.log("holas");
+    for(let i=0; i <= _arrayValues.length; i++){
+      do{
+        _input = prompt(_message);
+      }while(isNaN(_input) || (_input <= 0) || (_input == "")); //end of do-while
+
+      _arrayValues[i] = _input;
+      _acc = _acc + _arrayValues[i];
+    }
+
+    return _acc/_arrayValues.lenght;
 
     default:
       console.log("No deberías estar acá, por favor reportalo.");
@@ -78,12 +85,15 @@ class Person {
 
 console.log("Bienvenido a la calculadora de antropometrías");
 
-let option, isValid;
+let option;
+const people =[];
+
 option = prompt("Ingresar 1 para ejecutar o cualquier otra tecla para salir");
 
 do {
   if (option == 1) {
     const person = new Person();
+    people.push(person);
     dataOutput(person);
     option = prompt("Ingresar 1 para ejecutar el programa o cualquier otra tecla para salir");
   }//end of if
