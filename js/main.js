@@ -16,46 +16,53 @@ const calcIMC = (_height, _weight) => { return (_weight / Math.pow(centimeterToM
 
 //function printLine to print a line of 20 asteriscs
 function printLine(){
-  let line = "*";
+let line = "*";
 
-  for(i=0; i<=20; i++){
-    line += "*";
-  }//end of for loop
-  console.log(line);
+for(i=0; i<=20; i++){
+line += "*";
+}//end of for loop
+console.log(line);
 }//end of printLine function
 
-//function verifyInput to verify the input type is correct
-function verifyInput(_type, _message){
-  let _acc, _input;
+//function dataInput to verify the input type is correct
+function dataInput(_type, _message){
+  let _acc = 0, _input;
   const _arrayValues = new Array(1);
 
   switch (_type) {
     case "string":
-    let _input = prompt(_message);
+    _input = prompt(_message);
     while(_input == ""){
       console.log("Ingresar nombre");
       _input = prompt(_message);
     }//end of while
     return _input;
 
-    case "number":
-    console.log("holas");
-    for(let i=0; i <= _arrayValues.length; i++){
+    case "integer":
       do{
         _input = prompt(_message);
       }while(isNaN(_input) || (_input <= 0) || (_input == "")); //end of do-while
 
-      _arrayValues[i] = _input;
-      _acc = _acc + _arrayValues[i];
-    }
+    return _input
 
-    return _acc/_arrayValues.lenght;
+    case "float":
+      for(let i=0; i <= 1; i++){
+        do{
+          _input = parseFloat(prompt(_message + " (toma " + (i+1) + ")"));
+        }while(isNaN(_input) || (_input <= 0) || (_input == ""));
+
+        _arrayValues[i] = _input
+        _acc = _acc + _arrayValues[i];
+      }//end of for
+
+      return _acc/_arrayValues.length;
 
     default:
       console.log("No deberías estar acá, por favor reportalo.");
       break;
   }//end of switch
 }//end of verifyInput function
+
 
 //function dataOutput to print the results
 function dataOutput(_person){
@@ -69,13 +76,14 @@ function dataOutput(_person){
 ////////////////////////////////////////////////////////////////////////////////
 
 //class Person that symbolizes a single person
+
 class Person {
   constructor(){
-    this.name = verifyInput("string", "Ingresar el nombre: ");
-    this.age = parseInt(verifyInput("number", "Ingresar la edad: "));
-    this.height = parseFloat(verifyInput("number", "Ingresar la altura: "));
-    this.weight = parseFloat(verifyInput("number", "Ingresar el peso: "));
-    this.IMC = parseFloat(calcIMC(this.height, this.weight));
+    this.name = dataInput("string", "Ingresar nombre:");
+    this.age = parseInt(dataInput("integer", "Ingresar la edad:"));
+    this.height = parseFloat(dataInput("float", "Ingresar el peso en Kg"));
+    this.weight = parseFloat(dataInput("float", "Ingresar la altura en Cm"));
+    this.IMC =parseFloat(calcIMC(this.height, this.weight));
   }//end of constructor
 }//end of class Person
 
@@ -85,19 +93,21 @@ class Person {
 
 console.log("Bienvenido a la calculadora de antropometrías");
 
-let option;
-const people =[];
+let option; //Option for the user to choose
+option = prompt("Ingresar 1 para ejecutar o cualquier otra tecla para salir")
+const people = []; // Array to save people
 
-option = prompt("Ingresar 1 para ejecutar o cualquier otra tecla para salir");
-
-do {
-  if (option == 1) {
+do{
+  if(option == 1)
+  {
     const person = new Person();
     people.push(person);
     dataOutput(person);
+
     option = prompt("Ingresar 1 para ejecutar el programa o cualquier otra tecla para salir");
   }//end of if
+
   else{
     break;
   }//end of else
-} while (option == 1);//end of do-while
+} while(option == 1);
