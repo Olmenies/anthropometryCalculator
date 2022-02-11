@@ -63,35 +63,42 @@
       <div class="row mt-2">
         <div class="input-group">
           <span class="input-group-text">Nombre</span>
-          <input type="text" class="form-control" placeholder="Nombre" aria-label="name" aria-describedby="basic-addon1">
+          <input id="inputName" type="text" class="form-control" placeholder="Nombre" aria-label="name" aria-describedby="basic-addon1">
+        </div> <!-- end of input-group -->
+      </div> <!-- end of row -->
+      <div class="row mt-2">
+        <div class="input-group">
+          <span class="input-group-text">Apllido</span>
+          <input id="inputSurname" type="text" class="form-control" placeholder="Apellido" aria-label="name" aria-describedby="basic-addon1">
         </div> <!-- end of input-group -->
       </div> <!-- end of row -->
       <div class="row mt-2">
         <div class="input-group">
           <span class="input-group-text">Edad</span>
-          <input type="text" class="form-control" placeholder="Edad" aria-label="age" aria-describedby="basic-addon1">
+          <input id="inputAge" type="text" class="form-control" placeholder="Edad" aria-label="age" aria-describedby="basic-addon1">
         </div> <!-- end of input-group -->
       </div> <!-- end of row -->
       <div class="row mt-2">
         <div class="input-group">
           <span class="input-group-text">Altura</span>
-          <input type="text" placeholder="Altura toma 1" aria-label="height0" class="form-control">
-          <input type="text" placeholder="Altura toma 2" aria-label="height1" class="form-control">
+          <input id="inputHeight0" type="text" placeholder="Altura toma 1" aria-label="height0" class="form-control">
+          <input id="inputHeight1" type="text" placeholder="Altura toma 2" aria-label="height1" class="form-control">
         </div> <!-- end of input-group -->
       </div> <!-- end of row -->
       <div class="row mt-2">
         <div class="input-group">
           <span class="input-group-text">Peso</span>
-          <input type="text" placeholder="Peso toma 1" aria-label="weight0" class="form-control">
-          <input type="text" placeholder="Peso toma 2" aria-label="weight1" class="form-control">
+          <input id="inputWeight0" type="text" placeholder="Peso toma 1" aria-label="weight0" class="form-control">
+          <input id="inputWeight1" type="text" placeholder="Peso toma 2" aria-label="weight1" class="form-control">
         </div> <!-- end of input-group -->
       </div> <!-- end of row -->
-    </div> <!-- end of container -->
-    <div class="container results">
-      <div class="row mt-5">
-        <h2>Resultados:</h2>
+      <div class="row">
+        <button id="buttonCalculate" type="button" name="button">Calcular</button>
       </div>
-      <div class="row mb-5"><span>IMC:</span><span class="imc-result"></span></div>
+    </div> <!-- end of container -->
+
+    <div class="container" id="fatherResults">
+      <!-- <div class="row mb-5"><span>IMC:</span><span id="imcResult"></span></div> -->
     </div> <!-- end of container -->
   </main> <!-- end of main -->
   <footer>
