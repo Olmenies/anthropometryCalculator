@@ -14,18 +14,6 @@ const centimeterToMeterConverter = (_height) => { return (_height/100);};
 //function calcIMC to calculate IMC
 const calcIMC = (_height, _weight) => { return (_weight / Math.pow(centimeterToMeterConverter(_height),2));};
 
-//function printLine to print a line of 20 asteriscs
-function printLine()
-{
-  let line = "*";
-
-  for(i=0; i<=20; i++)
-  {
-    line += "*";
-  }//end of for loop
-  console.log(line);
-}//end of printLine function
-
 //function dataInput to verify the input type is correct *** This function should be deprecated as it was useful only when working with console ***
 function dataInput(_type)
 {
@@ -68,6 +56,15 @@ function dataInput(_type)
   }//end of switch
 }//end of verifyInput function
 
+//function clearDom to clear the results added to the DOM on a previous event
+function clearDom(_parentDiv)
+{
+  while(_parentDiv.firstChild)
+  {
+    _parentDiv.removeChild(_parentDiv.firstChild);
+  }//end of while
+}//end of function
+
 //function saveData to create a new person and print the results on the DOM. It has to be divided in three different functions
 function saveData()
 {
@@ -77,7 +74,6 @@ function saveData()
   //if a person with the same fullname already exists...
   if(flag == true)
   {
-    console.log("I'm on the if");
     //we'll iterate over the array until we find the element with the sane fullname
     for(const element of arrayPeople){
 
@@ -94,9 +90,11 @@ function saveData()
   //else, we add a new person to the array ---------------------> ***is this fine or should I concatenate a new array?***
   else
   {
-    console.log("I'm on the else");
     arrayPeople.push(person);
   }//end of else
+
+  let stringJSON = JSON.stringify(arrayPeople);
+  saveLocal("arrayPeople", arrayPeople);
 
   for(let i=0; i<= arrayPeople.length-1; i++){
     console.log(arrayPeople[i]);
@@ -104,12 +102,8 @@ function saveData()
 
   let collectionDivs = document.getElementsByClassName("results");
   let parentDiv = document.getElementById("fatherResults");
-
   //We clean up the DOM
-  while(parentDiv.firstChild)
-  {
-    parentDiv.removeChild(parentDiv.firstChild);
-  }//end of while
+  clearDom(parentDiv);
 
   //to do: the for-loop to add divs on the body ***Replace this with a ul-li*** MAKE THIS TO PRINT THE ARRAYPEOPLE
   for(const el of arrayPeople)
@@ -129,6 +123,13 @@ function saveData()
   }//end of for-of loop
 }//end of saveData function
 
+//function saveLocal to save data on local storage
+function saveLocal(_key, _arrayPeople)
+{
+  for(_person of _arrayPeople){
+    localStorage.setItem(_key, JSON.stringify(_arrayPeople));
+  }//itearte saving each value on local storage
+}
 ////////////////////////////////////////////////////////////////////////////////
 //Here come the classes
 ////////////////////////////////////////////////////////////////////////////////
