@@ -4,22 +4,6 @@
 * Author: Nicolás Esteban Olmedo
 */
 
-/*To do:
-1. Ask on afterclass the concatenation varname ---> Resolve using getElementByClass *** DONE
-2. Remove the switch on dataInput()
-3. Review the process of adding persons to the array of people
-4. Divide saveDada() on two different functions
-5. On the switch, change getElementById for getElementsByClassName and use a for to iterate *** DONE
-6. Update dataInput as requried
-7. Create a for-loop to print the results of the different patients
-8. IT'D BE REALLY NEAT TO CREATE A TAB SYSTEM WHICH SWITCHES BETWEEN THE DATA INPUT AND THE RESULTS ---> FINAL PROYECT
-9. Add functions to make fields required and verify the tpyes of the input
-10. Delete dataOutput() as it was useful when working by console || change the concatenation for a literal string *** DONE
-11. Craneate how to save QUÉ CARAJO BORRÉ ACÁ?!?!?! Add persons to the array?
-12. No se están agregando perosnas a las arrays, arreglar *** DONE
-13. Modificar el update del DOM para que represente al ARRAYPEOPLE
-*/
-
 ////////////////////////////////////////////////////////////////////////////////
 //Here come the functions
 ////////////////////////////////////////////////////////////////////////////////
