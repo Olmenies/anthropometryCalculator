@@ -98,15 +98,23 @@ function saveData()
     arrayPeople.push(person);
   }//end of else
 
-
-  for(let i=0; i<= arrayPeople.length; i++){
+  for(let i=0; i<= arrayPeople.length-1; i++){
     console.log(arrayPeople[i]);
   }//end of for loop
+
+  let collectionDivs = document.getElementsByClassName("results");
+  let parentDiv = document.getElementById("fatherResults");
+
+  //We clean up the DOM
+  while(parentDiv.firstChild)
+  {
+    parentDiv.removeChild(parentDiv.firstChild);
+  }//end of while
 
   //to do: the for-loop to add divs on the body ***Replace this with a ul-li*** MAKE THIS TO PRINT THE ARRAYPEOPLE
   for(const el of arrayPeople)
   {
-    let results = document.createElement("div");
+    let results = document.createElement("div.results");
     results.innerHTML = `
     <h2 class="mt-5"> Resultados: </h2>
     <span>Nombre: ${person.name}</span>
@@ -117,7 +125,7 @@ function saveData()
     <span>Peso: ${person.weight}</span>
     <span>IMC: ${person.IMC}</span>
     `;
-    document.getElementById("fatherResults").appendChild(results);
+    parentDiv.appendChild(results);
   }//end of for-of loop
 }//end of saveData function
 
