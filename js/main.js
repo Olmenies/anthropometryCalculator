@@ -94,42 +94,52 @@ function saveData()
   }//end of else
 
   let stringJSON = JSON.stringify(arrayPeople);
-  saveLocal("arrayPeople", arrayPeople);
+  saveLocal(arrayPeople);
 
+  let peopleList = localStorage.getItem(arrayPeople);
+
+  //to be deleted
   for(let i=0; i<= arrayPeople.length-1; i++){
     console.log(arrayPeople[i]);
   }//end of for loop
 
-  let collectionDivs = document.getElementsByClassName("results");
   let parentDiv = document.getElementById("fatherResults");
   //We clean up the DOM
   clearDom(parentDiv);
 
-  //to do: the for-loop to add divs on the body ***Replace this with a ul-li*** MAKE THIS TO PRINT THE ARRAYPEOPLE
-  for(const el of arrayPeople)
+  //we print the saved data on the DOM
+  printDom(parentDiv, _arrayPeople);
+  //to do: Replace this with a ul-li
+}//end of saveData function
+
+//function saveLocal to save data on local storage
+function saveLocal(arrayPeople)
+{
+  for(_person of _arrayPeople){
+    localStorage.setItem(_person.fullname, JSON.stringify(_person));
+  }//itearte saving each value on local storage
+}//end of saveLocal functions
+
+//function  printDom to print the results on the dom
+function printDom(_parentDiv, _arrayPeople)
+{
+  for(const el of _arrayPeople)
   {
     let results = document.createElement("div.results");
     results.innerHTML = `
     <h2 class="mt-5"> Resultados: </h2>
-    <span>Nombre: ${person.name}</span>
-    <span>Apellido: ${person.surname}</span>
-    <span>Código: ${person.fullname}</span>
-    <span>Edad: ${person.age}</span>
-    <span>Altura: ${person.height}</span>
-    <span>Peso: ${person.weight}</span>
-    <span>IMC: ${person.IMC}</span>
+    <span>Nombre: ${el.name}</span>
+    <span>Apellido: ${el.surname}</span>
+    <span>Código: ${el.fullname}</span>
+    <span>Edad: ${el.age}</span>
+    <span>Altura: ${el.height}</span>
+    <span>Peso: ${el.weight}</span>
+    <span>IMC: ${el.IMC}</span>
     `;
-    parentDiv.appendChild(results);
+    _parentDiv.appendChild(results);
   }//end of for-of loop
-}//end of saveData function
+}//end of printDom function
 
-//function saveLocal to save data on local storage
-function saveLocal(_key, _arrayPeople)
-{
-  for(_person of _arrayPeople){
-    localStorage.setItem(_key, JSON.stringify(_arrayPeople));
-  }//itearte saving each value on local storage
-}
 ////////////////////////////////////////////////////////////////////////////////
 //Here come the classes
 ////////////////////////////////////////////////////////////////////////////////
