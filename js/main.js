@@ -68,8 +68,9 @@ function clearDom(_parentDiv)
 //function saveData to create a new person and print the results on the DOM. It has to be divided in three different functions
 function saveData()
 {
+  console.log(arrayPeople);
   const person = new Person(); //instanciation of a new person
-  const flag = arrayPeople.some((el) => { return el.fullname === person.fullname}); //we evaluate if a person with the same fullname already exists --> Flag is alwas undefined
+  const flag = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alwas undefined
 
   //if a person with the same fullname already exists...
   if(flag == true)
@@ -97,13 +98,8 @@ function saveData()
   saveLocal(arrayPeople);
 
   let peopleList = localStorage.getItem(arrayPeople);
-
-  //to be deleted
-  for(let i=0; i<= arrayPeople.length-1; i++){
-    console.log(arrayPeople[i]);
-  }//end of for loop
-
   let parentDiv = document.getElementById("fatherResults");
+
   //We clean up the DOM
   clearDom(parentDiv);
 
@@ -115,14 +111,13 @@ function saveData()
 //function saveLocal to save data on local storage
 function saveLocal(_arrayPeople)
 {
-  for(_person of _arrayPeople){
-    localStorage.setItem(_person.fullname, JSON.stringify(_person));
-  }//itearte saving each value on local storage
+  localStorage.setItem("savedPeopleList", JSON.stringify(_arrayPeople));
 }//end of saveLocal functions
 
 //function  printDom to print the results on the dom
 function printDom(_parentDiv, _arrayPeople)
 {
+
   for(const el of _arrayPeople)
   {
     let results = document.createElement("div.results");
@@ -139,6 +134,22 @@ function printDom(_parentDiv, _arrayPeople)
     _parentDiv.appendChild(results);
   }//end of for-of loop
 }//end of printDom function
+
+//function restoreData to restore the data from the localStorage to a live array
+function restoreData()
+{
+  let flag = localStorage.getItem("savedPeopleList");
+
+  //we verify if the local storage is empty
+  if(flag != null){
+    const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"))
+
+    //we restore the saved persons to the live arrayPeople
+    for(const el of parsedSavedPopleList){
+      arrayPeople.push(el);
+    }//end of for loop
+  }//end of if
+}//end of restoreData function
 
 ////////////////////////////////////////////////////////////////////////////////
 //Here come the classes
@@ -164,7 +175,6 @@ class Person
 ////////////////////////////////////////////////////////////////////////////////
 
 console.log("Bienvenido a la calculadora de antropometrías");
-
-const arrayPeople = []; // Array to save people. Made global to make it usable on the different functions
+const arrayPeople = []
 let element = document.getElementById("buttonCalculate");
 element.addEventListener("click", saveData);
