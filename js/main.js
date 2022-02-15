@@ -142,7 +142,7 @@ function restoreData()
 
   //we verify if the local storage is empty
   if(flag != null){
-    const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"))
+    const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"));
 
     //we restore the saved persons to the live arrayPeople
     for(const el of parsedSavedPopleList){
@@ -175,6 +175,6 @@ class Person
 ////////////////////////////////////////////////////////////////////////////////
 
 console.log("Bienvenido a la calculadora de antropometrías");
-const arrayPeople = []
+const arrayPeople = [];
 let element = document.getElementById("buttonCalculate");
 element.addEventListener("click", saveToArray);
