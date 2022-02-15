@@ -65,8 +65,8 @@ function clearDom(_parentDiv)
   }//end of while
 }//end of function
 
-//function saveData to create a new person and print the results on the DOM. It has to be divided in three different functions
-function saveData()
+//function saveToArray to create a new person and print the results on the DOM. It has to be divided in three different functions
+function saveToArray()
 {
   console.log(arrayPeople);
   const person = new Person(); //instanciation of a new person
@@ -94,10 +94,10 @@ function saveData()
     arrayPeople.push(person);
   }//end of else
 
+  //Ask what do I have to do to remove below lines from this function
   let stringJSON = JSON.stringify(arrayPeople);
   saveLocal(arrayPeople);
 
-  let peopleList = localStorage.getItem(arrayPeople);
   let parentDiv = document.getElementById("fatherResults");
 
   //We clean up the DOM
@@ -105,8 +105,8 @@ function saveData()
 
   //we print the saved data on the DOM
   printDom(parentDiv, arrayPeople);
-  //to do: Replace this with a ul-li
-}//end of saveData function
+
+}//end of saveToArray function
 
 //function saveLocal to save data on local storage
 function saveLocal(_arrayPeople)
@@ -177,4 +177,4 @@ class Person
 console.log("Bienvenido a la calculadora de antropometrías");
 const arrayPeople = []
 let element = document.getElementById("buttonCalculate");
-element.addEventListener("click", saveData);
+element.addEventListener("click", saveToArray);
