@@ -108,12 +108,12 @@ function saveData()
   clearDom(parentDiv);
 
   //we print the saved data on the DOM
-  printDom(parentDiv, _arrayPeople);
+  printDom(parentDiv, arrayPeople);
   //to do: Replace this with a ul-li
 }//end of saveData function
 
 //function saveLocal to save data on local storage
-function saveLocal(arrayPeople)
+function saveLocal(_arrayPeople)
 {
   for(_person of _arrayPeople){
     localStorage.setItem(_person.fullname, JSON.stringify(_person));
