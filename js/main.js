@@ -54,7 +54,7 @@ function dataInput(_type)
     console.log("No deberías estar acá, por favor reportalo.");
     break;
   }//end of switch
-}//end of verifyInput function
+}//end of dataInput function
 
 //function clearDom to clear the results added to the DOM on a previous event
 function clearDom(_parentDiv)
@@ -68,7 +68,6 @@ function clearDom(_parentDiv)
 //function saveToArray to create a new person and print the results on the DOM. It has to be divided in three different functions
 function saveToArray()
 {
-  console.log(arrayPeople);
   const person = new Person(); //instanciation of a new person
   const flag = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alwas undefined
 
@@ -151,6 +150,47 @@ function restoreData()
   }//end of if
 }//end of restoreData function
 
+//function verifyInput to verify that the inputs of the form are valid
+function verifyInput()
+{
+  let isInputValid;
+
+  if((inputName.value === null) || (inputName.value === ""))
+  {
+    isInputValid = false;
+  }
+  else if ((inputSurname.value === null) || (inputSurname.value === ""))
+  {
+    isInputValid = false;
+  }
+  else if ((inputAge.value === null) || (inputAge.value === ""))
+  {
+    isInputValid = false;
+  }
+  else
+  {
+    isInputValid = true;
+  }//end of if
+
+  let collectionHeight = document.getElementsByClassName("inputHeight");
+  for(const el in collectionHeight)
+  {
+    if((el == null) || (isNaN(el)) || (el == "") || (el == undefined))
+    {
+      isInputValid = false;
+      break;
+    }//end of if
+  }//end of for loop
+
+  if(isInputValid)
+  {
+    saveToArray();
+  } else
+  {
+    window.alert("Por favor, llenar todos los campos del forumario con información válida");
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 //Here come the classes
 ////////////////////////////////////////////////////////////////////////////////
@@ -177,4 +217,4 @@ class Person
 console.log("Bienvenido a la calculadora de antropometrías");
 const arrayPeople = [];
 let element = document.getElementById("buttonCalculate");
-element.addEventListener("click", saveToArray);
+element.addEventListener("click", verifyInput);
