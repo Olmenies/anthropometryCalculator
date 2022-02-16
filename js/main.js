@@ -158,46 +158,48 @@ function verifyInput()
   if((inputName.value === null) || (inputName.value === ""))
   {
     isInputValid = false;
+    if(isInputValid === false)
+    {
+      window.alert("Por favor, llenar todos los campos del forumario con información válida");
+      return;
+    }
   }
   else if ((inputSurname.value === null) || (inputSurname.value === ""))
   {
     isInputValid = false;
+    if(isInputValid === false)
+    {
+      window.alert("Por favor, llenar todos los campos del forumario con información válida");
+      return;
+    }
   }
   else if ((inputAge.value === null) || (inputAge.value === ""))
   {
     isInputValid = false;
+    if(isInputValid === false)
+    {
+      window.alert("Por favor, llenar todos los campos del forumario con información válida");
+      return;
+    }
   }
   else
   {
     isInputValid = true;
   }//end of if
 
-////////////////////////////////////////////////////////////////////////////////
-//To do: depure below lines into a function
-
-let collectionHeight = document.getElementsByClassName("inputHeight");
-let inputValueHeight; //variable to save the
-for (const el of collectionHeight)
-{
-  inputValueHeight = parseFloat(el.value);
-  if(isNaN(inputValueHeight))
+  isInputValid = verifyInputClass("inputHeight");
+  if(isInputValid === false)
   {
-    isInputValid = false;
-  }//end of if
-}//end of for
+    window.alert("Por favor, llenar todos los campos del forumario con información válida");
+    return;
+  }
 
-let collectionWeight = document.getElementsByClassName("inputWeight");
-let inputValueWeight; //variable to save the
-for (const el of collectionWeight)
-{
-  inputValueWeight = parseFloat(el.value);
-  if(isNaN(inputValueWeight))
+  isInputValid = verifyInputClass("inputWeight");
+  if(isInputValid === false)
   {
-    isInputValid = false;
-  }//end of if
-}//end of for
-
-////////////////////////////////////////////////////////////////////////////////
+    window.alert("Por favor, llenar todos los campos del forumario con información válida");
+    return;
+  }
 
   if(isInputValid)
   {
@@ -205,7 +207,24 @@ for (const el of collectionWeight)
   } else
   {
     window.alert("Por favor, llenar todos los campos del forumario con información válida");
-  }
+  }//end of if
+}//end of verifyInput function
+
+function verifyInputClass(_className)
+{
+  let collection = document.getElementsByClassName(_className);
+  let inputValue; //variable to save the value of the inputs
+  let _isInputValid = true;
+
+  for (const el of collection)
+  {
+    inputValue = parseFloat(el.value);
+    if(isNaN(inputValue))
+    {
+      _isInputValid = false;
+    }//end of if
+  }//end of for
+  return _isInputValid;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
