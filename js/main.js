@@ -173,14 +173,21 @@ function verifyInput()
   }//end of if
 
   let collectionHeight = document.getElementsByClassName("inputHeight");
+
+////////////////////////////////////////////////////////////////////////////////
+/*
   for(const el in collectionHeight)
   {
-    if((el == null) || (isNaN(el)) || (el == "") || (el == undefined))
+    console.log("el = " + el);
+    console.log(typeof el);
+    if((el == null) || (isNaN(el)) || (el == "") || (el == "undefined"))
     {
       isInputValid = false;
       break;
     }//end of if
   }//end of for loop
+*/
+////////////////////////////////////////////////////////////////////////////////
 
   if(isInputValid)
   {
