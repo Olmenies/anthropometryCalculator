@@ -172,21 +172,31 @@ function verifyInput()
     isInputValid = true;
   }//end of if
 
-  let collectionHeight = document.getElementsByClassName("inputHeight");
-
 ////////////////////////////////////////////////////////////////////////////////
-/*
-  for(const el in collectionHeight)
+//To do: depure below lines into a function
+
+let collectionHeight = document.getElementsByClassName("inputHeight");
+let inputValueHeight; //variable to save the
+for (const el of collectionHeight)
+{
+  inputValueHeight = parseFloat(el.value);
+  if(isNaN(inputValueHeight))
   {
-    console.log("el = " + el);
-    console.log(typeof el);
-    if((el == null) || (isNaN(el)) || (el == "") || (el == "undefined"))
-    {
-      isInputValid = false;
-      break;
-    }//end of if
-  }//end of for loop
-*/
+    isInputValid = false;
+  }//end of if
+}//end of for
+
+let collectionWeight = document.getElementsByClassName("inputWeight");
+let inputValueWeight; //variable to save the
+for (const el of collectionWeight)
+{
+  inputValueWeight = parseFloat(el.value);
+  if(isNaN(inputValueWeight))
+  {
+    isInputValid = false;
+  }//end of if
+}//end of for
+
 ////////////////////////////////////////////////////////////////////////////////
 
   if(isInputValid)
