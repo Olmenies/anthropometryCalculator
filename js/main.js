@@ -210,6 +210,7 @@ function verifyInput()
   }//end of if
 }//end of verifyInput function
 
+//function verifyInputClass to verify the inputs caught by getElementsByClassName()
 function verifyInputClass(_className)
 {
   let collection = document.getElementsByClassName(_className);
@@ -252,5 +253,5 @@ class Person
 
 console.log("Bienvenido a la calculadora de antropometrías");
 const arrayPeople = [];
-let element = document.getElementById("buttonCalculate");
-element.addEventListener("click", verifyInput);
+let myButton = document.getElementById("buttonCalculate");
+myButton.addEventListener("click", verifyInput);
