@@ -31,8 +31,13 @@ function dataInput(_type)
     return _input.value;
 
     case "age":
-    _input = document.getElementById("inputAge");
-    return _input.value;
+    let birthDate = DateTime.fromISO(inputBirthdayDate.value);
+    let evalDate = DateTime.fromISO(inputEvaluationDate.value);
+    //let differenceDates =  evalDate.diff(birthDate, "years");
+    //console.log(differenceDates.toObject());
+    let intervalDates = Interval.fromDateTimes(birthDate, evalDate);
+    console.log(intervalDates);
+    return intervalDates.length("years");
 
     case "height":
     let collectionHeight = document.getElementsByClassName("inputHeight");
@@ -68,6 +73,8 @@ function clearDom(_parentDiv)
 //function saveToArray to create a new person and print the results on the DOM. It has to be divided in three different functions
 function saveToArray()
 {
+  restoreData(); //We restore the data from the last execution
+
   const person = new Person(); //instanciation of a new person
   const flag = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alwas undefined
 
@@ -104,7 +111,6 @@ function saveToArray()
 
   //we print the saved data on the DOM
   printDom(parentDiv, arrayPeople);
-
 }//end of saveToArray function
 
 //function saveLocal to save data on local storage
@@ -116,7 +122,6 @@ function saveLocal(_arrayPeople)
 //function  printDom to print the results on the dom
 function printDom(_parentDiv, _arrayPeople)
 {
-
   for(const el of _arrayPeople)
   {
     let results = document.createElement("div.results");
@@ -154,6 +159,22 @@ function restoreData()
 function verifyInput()
 {
   let isInputValid;
+  /*
+  //ARREGLAR ESTO, EL RETURN IMPLÍCITO NO ME DEJA SALIR DE LA FUNCIÓN CUANDO TENEMOS UN RESULTADO FALSY
+  !inputName.value ? isInputValid = false && loadUncomplete(): null; //evaluate if inputName is Falsy
+  !inputSurname.value ? isInputValid = false && loadUncomplete() : null;//evaluate if inputSurname is Falsy
+  !inputBirthdayDate.value ? isInputValid == false && loadUncomplete() : null;//evaluate if inputBirthdayDate is Falsy
+  !inputEvaluationDate.value ? isInputValid == false && loadUncomplete() : null;//evaluate if inputBirthdayDate is Falsy
+
+
+  isInputValid = verifyInputClass("inputHeight");
+  !isInputValid ? loadUncomplete() : null;
+
+  isInputValid = verifyInputClass("inputWeight");
+  !isInputValid ? loadUncomplete() : null;
+
+  //isInputValid ? loadComplete() && saveToArray() : loadUncomplete(); -------------------> ¿Por qué no ejecuta saveToArray?
+  */
 
   if((inputName.value === null) || (inputName.value === ""))
   {
@@ -169,17 +190,26 @@ function verifyInput()
     isInputValid = false;
     if(isInputValid === false)
     {
-      loadUncomplete()
+      loadUncomplete();
       return;
     }
   }
-  else if ((inputAge.value === null) || (inputAge.value === ""))
+  else if ((inputBirthdayDate.value === null) || (inputBirthdayDate.value === ""))
   {
     isInputValid = false;
     if(isInputValid === false)
     {
-      loadUncomplete()
+      loadUncomplete();
       return;
+    }
+    else if ((inputEvaluationDate.value === null) || (inputEvaluationDate.value === ""))
+    {
+      isInputValid = false;
+      if(isInputValid === false)
+      {
+        loadUncomplete();
+        return;
+      }
     }
   }
   else
@@ -190,25 +220,23 @@ function verifyInput()
   isInputValid = verifyInputClass("inputHeight");
   if(isInputValid === false)
   {
-    loadUncomplete()
+    loadUncomplete();
     return;
   }
 
   isInputValid = verifyInputClass("inputWeight");
   if(isInputValid === false)
   {
-    loadUncomplete()
+    loadUncomplete();
     return;
   }
-
   if(isInputValid)
   {
     loadComplete();
     saveToArray();
-  } else
-  {
-    loadUncomplete()
-  }//end of if
+  } else {
+    loadUncomplete();
+  }
 }//end of verifyInput function
 
 //function verifyInputClass to verify the inputs caught by getElementsByClassName()
@@ -274,6 +302,11 @@ class Person
 ////////////////////////////////////////////////////////////////////////////////
 
 console.log("Bienvenido a la calculadora de antropometrías");
+
 const arrayPeople = [];
+const DateTime = luxon.DateTime;
+const Interval = luxon.Interval;
+
 let myButton = document.getElementById("buttonCalculate");
+
 myButton.addEventListener("click", verifyInput);
