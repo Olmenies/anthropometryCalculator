@@ -1,6 +1,7 @@
 main
 {
   background-color: #FAB5B9;
+  padding: 1rem 0 2rem 0;
 }
 
 h1
@@ -14,6 +15,11 @@ img
   max-height: 30vh;
   max-width: 30vh;
   object-fit: contain;
+}
+
+.form
+{
+  border: solid 2px black;
 }
 
 .container__tab

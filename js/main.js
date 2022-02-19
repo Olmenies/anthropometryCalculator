@@ -160,7 +160,7 @@ function verifyInput()
     isInputValid = false;
     if(isInputValid === false)
     {
-      window.alert("Por favor, llenar todos los campos del forumario con información válida");
+      loadUncomplete();
       return;
     }
   }
@@ -169,7 +169,7 @@ function verifyInput()
     isInputValid = false;
     if(isInputValid === false)
     {
-      window.alert("Por favor, llenar todos los campos del forumario con información válida");
+      loadUncomplete()
       return;
     }
   }
@@ -178,7 +178,7 @@ function verifyInput()
     isInputValid = false;
     if(isInputValid === false)
     {
-      window.alert("Por favor, llenar todos los campos del forumario con información válida");
+      loadUncomplete()
       return;
     }
   }
@@ -190,23 +190,24 @@ function verifyInput()
   isInputValid = verifyInputClass("inputHeight");
   if(isInputValid === false)
   {
-    window.alert("Por favor, llenar todos los campos del forumario con información válida");
+    loadUncomplete()
     return;
   }
 
   isInputValid = verifyInputClass("inputWeight");
   if(isInputValid === false)
   {
-    window.alert("Por favor, llenar todos los campos del forumario con información válida");
+    loadUncomplete()
     return;
   }
 
   if(isInputValid)
   {
+    loadComplete();
     saveToArray();
   } else
   {
-    window.alert("Por favor, llenar todos los campos del forumario con información válida");
+    loadUncomplete()
   }//end of if
 }//end of verifyInput function
 
@@ -226,6 +227,27 @@ function verifyInputClass(_className)
     }//end of if
   }//end of for
   return _isInputValid;
+}
+
+//function loadComplete() to issue a sweetalert if all the data has been properly updated
+function loadComplete()
+{
+  swal
+  ({
+    title: "Carga completa",
+    text: "Estamos calculando los resultados",
+    icon: "success",
+  });
+}//end of function
+
+//function loadUnComplete() to issue a sweealert if there was an error on the data updated
+function loadUncomplete() {
+  swal
+  ({
+    title: "Error",
+    text: "Por favor, chequear que los datos sean correctos",
+    icon: "error",
+  });
 }
 
 ////////////////////////////////////////////////////////////////////////////////
