@@ -36,7 +36,7 @@ function dataInput(_type)
     //let differenceDates =  evalDate.diff(birthDate, "years");
     //console.log(differenceDates.toObject());
     let intervalDates = Interval.fromDateTimes(birthDate, evalDate);
-    console.log(intervalDates);
+    //console.log(intervalDates);
     return intervalDates.length("years");
 
     case "height":
@@ -73,13 +73,12 @@ function clearDom(_parentDiv)
 //function saveToArray to create a new person and print the results on the DOM. It has to be divided in three different functions
 function saveToArray()
 {
-  restoreData(); //We restore the data from the last execution
-
   const person = new Person(); //instanciation of a new person
-  const flag = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alwas undefined
+  const isDuplicated = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alway undefined
+  console.log("isDuplicated: " + isDuplicated);
 
   //if a person with the same fullname already exists...
-  if(flag == true)
+  if(isDuplicated === true)
   {
     //we'll iterate over the array until we find the element with the sane fullname
     for(const element of arrayPeople){
@@ -100,8 +99,15 @@ function saveToArray()
     arrayPeople.push(person);
   }//end of else
 
-  //Ask what do I have to do to remove below lines from this function
+  console.log("Voy a imprimir el arrayPeople");
+  for(const el of arrayPeople)
+  {
+    console.log(el);
+  }
+
   let stringJSON = JSON.stringify(arrayPeople);
+
+  //removeLocal();
   saveLocal(arrayPeople);
 
   let parentDiv = document.getElementById("fatherResults");
@@ -112,6 +118,12 @@ function saveToArray()
   //we print the saved data on the DOM
   printDom(parentDiv, arrayPeople);
 }//end of saveToArray function
+
+//function removeLocal to reove items from the local localStorage
+function removeLocal()
+{
+  localStorage.removeItem("savedPeopleList");
+}
 
 //function saveLocal to save data on local storage
 function saveLocal(_arrayPeople)
@@ -306,6 +318,8 @@ console.log("Bienvenido a la calculadora de antropometrías");
 const arrayPeople = [];
 const DateTime = luxon.DateTime;
 const Interval = luxon.Interval;
+
+restoreData();
 
 let myButton = document.getElementById("buttonCalculate");
 
