@@ -6,9 +6,9 @@ function printDom(_parentDiv, _arrayPeople)
     let results = document.createElement("div");
     results.classList.add("results");
     results.innerHTML = `
-    <h2 class="mt-5"> ${el.name} ${el.surname} </h2>
+    <h2> ${el.name} ${el.surname} </h2>
     <p>Código: ${el.fullname}</p>
-    <p>Edad: ${el.age}</p>
+    <p>Edad: ${el.age} años</p>
     <p>Altura: ${el.height}cm</p>
     <p>Peso: ${el.weight}kg</p>
     <p>IMC: ${el.IMC}</p>
