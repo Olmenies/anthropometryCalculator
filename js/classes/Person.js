@@ -9,6 +9,6 @@ class Person
     this.age = dataInput("age");
     this.height = parseFloat(dataInput("height"));
     this.weight = parseFloat(dataInput("weight"));
-    this.IMC =parseFloat(calcIMC(this.height, this.weight));
+    this.IMC = parseFloat(calcIMC(this.height, this.weight)).toFixed(2);
   }//end of constructor
 }//end of class Person

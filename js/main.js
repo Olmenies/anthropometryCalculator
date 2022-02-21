@@ -17,9 +17,11 @@ restoreData() //Restore the data from the local storage
 
 let myButtonCalculate = document.getElementById("buttonCalculate");
 let myButtonPrint = document.getElementById("buttonPrint");
+let myButtonClean = document.getElementById("buttonClean");
 
 myButtonCalculate.addEventListener("click", verifyInput);
 myButtonPrint.addEventListener("click", () => {clearDom(fatherResults); printDom(fatherResults, arrayPeople)});
+myButtonClean.addEventListener("click", () => {clearDom(fatherResults)});
 
 ////////////////////////////////////////////////////////////////////////////////
 

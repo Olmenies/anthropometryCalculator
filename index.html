@@ -66,7 +66,7 @@
 
       <div class="row mt-2">
         <div class="input-group">
-          <span class="input-group-text">Altura</span>
+          <span class="input-group-text">Altura (en cm)</span>
           <input type="number" placeholder="Altura toma 1" aria-label="height0" class="form-control inputHeight" min="1" max="300" required>
           <input type="number" placeholder="Altura toma 2" aria-label="height1" class="form-control inputHeight" min="1" max="300" required>
         </div> <!-- end of input-group -->
@@ -74,23 +74,28 @@
 
       <div class="row mt-2">
         <div class="input-group">
-          <span class="input-group-text">Peso</span>
+          <span class="input-group-text">Peso (en kg)</span>
           <input type="number" placeholder="Peso toma 1" aria-label="weight0" class="form-control inputWeight" min="1" max="300" required>
           <input type="number" placeholder="Peso toma 2" aria-label="weight1" class="form-control inputWeight" min="1" max="300" required>
         </div> <!-- end of input-group -->
       </div> <!-- end of row -->
       <div class="row mt-5">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <button id="buttonCalculate" type="button" name="button">Calcular</button>
         </div> <!-- end of col -->
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <button id="buttonPrint" type="button" name="button">Mostrar resultados</button>
         </div> <!-- end of col -->
+
+        <div class="col-md-4">
+          <button id="buttonClean" type="button" name="button">Limpiar</button>
+        </div> <!-- end of col -->
+
       </div> <!-- end of row -->
     </div> <!-- end of container -->
 
-    <div class="container mt-5" id="fatherResults">
+    <div class="container mt-5 d-flex text-center" id="fatherResults">
       <!-- <div class="row mb-5"><span>IMC:</span><span id="imcResult"></span></div> -->
     </div> <!-- end of container -->
   </main> <!-- end of main -->
@@ -110,13 +115,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="js/luxon.js"></script>
-  <script src="js/dialogFunctions.js"></script>
-  <script src="js/storageFunctions.js"></script>
-  <script src="js/verificationFunctions.js"></script>
-  <script src="js/dataInputFunctions.js"></script>
-  <script src="js/dataManipulationFunctions.js"></script>
-  <script src="js/DOMFunctions.js"></script>
-  <script src="js/Person.js"></script>
+  <script src="js/classes/Person.js"></script>
+  <script src="js/functions/dialogFunctions.js"></script>
+  <script src="js/functions/storageFunctions.js"></script>
+  <script src="js/functions/verificationFunctions.js"></script>
+  <script src="js/functions/dataInputFunctions.js"></script>
+  <script src="js/functions/dataManipulationFunctions.js"></script>
+  <script src="js/functions/DOMFunctions.js"></script>
   <script src="js/main.js"></script>
 </body> <!-- end of body -->
 </html> <!-- end of html -->

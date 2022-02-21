@@ -76,9 +76,12 @@ img
   list-style: inside;
 }
 
-.dontDisplay
+.results
 {
-  display: None;
+  margin: 0 1rem;
+  padding: 1rem;
+  border: solid 2px black;
+  background-color: #a13838;
 }
 
 footer

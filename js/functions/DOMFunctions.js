@@ -3,16 +3,15 @@ function printDom(_parentDiv, _arrayPeople)
 {
   for(const el of _arrayPeople)
   {
-    let results = document.createElement("div.results");
+    let results = document.createElement("div");
+    results.classList.add("results");
     results.innerHTML = `
-    <h2 class="mt-5"> Resultados: </h2>
-    <span>Nombre: ${el.name}</span>
-    <span>Apellido: ${el.surname}</span>
-    <span>Código: ${el.fullname}</span>
-    <span>Edad: ${el.age}</span>
-    <span>Altura: ${el.height}</span>
-    <span>Peso: ${el.weight}</span>
-    <span>IMC: ${el.IMC}</span>
+    <h2 class="mt-5"> ${el.name} ${el.surname} </h2>
+    <p>Código: ${el.fullname}</p>
+    <p>Edad: ${el.age}</p>
+    <p>Altura: ${el.height}cm</p>
+    <p>Peso: ${el.weight}kg</p>
+    <p>IMC: ${el.IMC}</p>
     `;
     _parentDiv.appendChild(results);
   }//end of for-of loop
