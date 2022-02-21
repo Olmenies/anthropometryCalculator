@@ -2,84 +2,53 @@
 function verifyInput()
 {
   let isInputValid;
-  /*
-  //ARREGLAR ESTO, EL RETURN IMPLÍCITO NO ME DEJA SALIR DE LA FUNCIÓN CUANDO TENEMOS UN RESULTADO FALSY
-  !inputName.value ? isInputValid = false && loadUncomplete(): null; //evaluate if inputName is Falsy
-  !inputSurname.value ? isInputValid = false && loadUncomplete() : null;//evaluate if inputSurname is Falsy
-  !inputBirthdayDate.value ? isInputValid == false && loadUncomplete() : null;//evaluate if inputBirthdayDate is Falsy
-  !inputEvaluationDate.value ? isInputValid == false && loadUncomplete() : null;//evaluate if inputBirthdayDate is Falsy
-
-
-  isInputValid = verifyInputClass("inputHeight");
-  !isInputValid ? loadUncomplete() : null;
-
-  isInputValid = verifyInputClass("inputWeight");
-  !isInputValid ? loadUncomplete() : null;
-
-  //isInputValid ? loadComplete() && saveToArray() : loadUncomplete(); -------------------> ¿Por qué no ejecuta saveToArray?
-  */
 
   if((inputName.value === null) || (inputName.value === ""))
   {
-    isInputValid = false;
-    if(isInputValid === false)
-    {
-      loadUncomplete();
-      return;
-    }
+    isInputValid = null;
+    isInputValid ?? loadUncomplete(); return;
   }
   else if ((inputSurname.value === null) || (inputSurname.value === ""))
   {
-    isInputValid = false;
-    if(isInputValid === false)
-    {
-      loadUncomplete();
-      return;
-    }
+    isInputValid = null;
+    isInputValid ?? loadUncomplete(); return;
   }
   else if ((inputBirthdayDate.value === null) || (inputBirthdayDate.value === ""))
   {
-    isInputValid = false;
-    if(isInputValid === false)
-    {
-      loadUncomplete();
-      return;
-    }
-    else if ((inputEvaluationDate.value === null) || (inputEvaluationDate.value === ""))
-    {
-      isInputValid = false;
-      if(isInputValid === false)
-      {
-        loadUncomplete();
-        return;
-      }
-    }
+    isInputValid = null;
+    isInputValid ?? loadUncomplete(); return;
   }
-  else
+  else if ((inputEvaluationDate.value === null) || (inputEvaluationDate.value === ""))
   {
-    isInputValid = true;
-  }//end of if
+    isInputValid = null;
+    isInputValid ?? loadUncomplete(); return;
+  }
+}
+else
+{
+  isInputValid = true;
+}//end of if
 
-  isInputValid = verifyInputClass("inputHeight");
-  if(isInputValid === false)
-  {
-    loadUncomplete();
-    return;
-  }
+isInputValid = verifyInputClass("inputHeight");
+if(isInputValid === false)
+{
+  loadUncomplete();
+  return;
+}
 
-  isInputValid = verifyInputClass("inputWeight");
-  if(isInputValid === false)
-  {
-    loadUncomplete();
-    return;
-  }
-  if(isInputValid)
-  {
-    loadComplete();
-    saveToArray();
-  } else {
-    loadUncomplete();
-  }
+isInputValid = verifyInputClass("inputWeight");
+if(isInputValid === false)
+{
+  loadUncomplete();
+  return;
+}
+if(isInputValid)
+{
+  loadComplete();
+  saveToArray();
+} else {
+  loadUncomplete();
+}
 }//end of verifyInput function
 
 //function verifyInputClass to verify the inputs caught by getElementsByClassName()
