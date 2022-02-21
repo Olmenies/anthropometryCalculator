@@ -1,6 +1,24 @@
+
+
+body, .navbar
+{
+  background: rgb(36,0,0);
+  background: linear-gradient(90deg, rgba(36,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(134,50,50,1) 100%);
+  background-size: cover;
+  color: white;
+  overflow-x: hidden;
+}
+
+.navbar
+{
+  position: fixed;
+  width: 100%;
+  z-index:1000;
+}
+
+
 main
 {
-  background-color: #FAB5B9;
   padding: 1rem 0 2rem 0;
 }
 
@@ -20,7 +38,7 @@ img
 .form__input
 {
   border: solid 2px black;
-  background: tomato;
+  background: #A13838;
   padding: 1rem 3rem;
 }
 
@@ -38,12 +56,12 @@ img
 
 .form__tab__button
 {
-  background-color: tomato;
+  background-color: #a13838;
 }
 
 .form__tab__button:hover
 {
-  background-color: tomato;
+  background-color: #a13838;
   filter: brightness(90%);
 }
 
@@ -67,7 +85,8 @@ footer
 {
   justify-content: space-around;
   border-top: solid 2px black;
-  background-color: lightgrey;
+  background: rgb(36,0,0);
+  background: linear-gradient(90deg, rgba(36,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(134,50,50,1) 100%);
 }
 
 //Code taken from https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp to prevent arrows from appearing
