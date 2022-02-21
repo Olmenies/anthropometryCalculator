@@ -8,11 +8,19 @@
 //Here come the functions
 ////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////
+//Data manipulation functions
+////////////////////////////
+
 //function centimeterToMeterConverter to convert data from cm to m
 const centimeterToMeterConverter = (_height) => { return (_height/100);};
 
 //function calcIMC to calculate IMC
 const calcIMC = (_height, _weight) => { return (_weight / Math.pow(centimeterToMeterConverter(_height),2));};
+
+//////////////////////
+//Data input functions
+//////////////////////
 
 //function dataInput to verify the input type is correct *** This function should be deprecated as it was useful only when working with console ***
 function dataInput(_type)
@@ -33,11 +41,8 @@ function dataInput(_type)
     case "age":
     let birthDate = DateTime.fromISO(inputBirthdayDate.value);
     let evalDate = DateTime.fromISO(inputEvaluationDate.value);
-    //let differenceDates =  evalDate.diff(birthDate, "years");
-    //console.log(differenceDates.toObject());
     let intervalDates = Interval.fromDateTimes(birthDate, evalDate);
-    //console.log(intervalDates);
-    return intervalDates.length("years");
+    return Math.trunc(intervalDates.length("years")); //truncate the results deleting numbers after dot
 
     case "height":
     let collectionHeight = document.getElementsByClassName("inputHeight");
@@ -61,111 +66,9 @@ function dataInput(_type)
   }//end of switch
 }//end of dataInput function
 
-//function clearDom to clear the results added to the DOM on a previous event
-function clearDom(_parentDiv)
-{
-  while(_parentDiv.firstChild)
-  {
-    _parentDiv.removeChild(_parentDiv.firstChild);
-  }//end of while
-}//end of function
-
-//function saveToArray to create a new person and print the results on the DOM. It has to be divided in three different functions
-function saveToArray()
-{
-  const person = new Person(); //instanciation of a new person
-  const isDuplicated = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alway undefined
-  console.log("isDuplicated: " + isDuplicated);
-
-  //if a person with the same fullname already exists...
-  if(isDuplicated === true)
-  {
-    //we'll iterate over the array until we find the element with the sane fullname
-    for(const element of arrayPeople){
-
-      //if the person already exists (according to the fullname), we update it's values
-      if(element.fullname === person.fullname){
-        element.age = person.age;
-        element.height = person.height;
-        element.weight = person.weight;
-        element.IMC = person.IMC;
-      }//end of internal if
-    }//end fo for-loop
-  }//end of external loop
-
-  //else, we add a new person to the array ---------------------> ***is this fine or should I concatenate a new array?***
-  else
-  {
-    arrayPeople.push(person);
-  }//end of else
-
-  console.log("Voy a imprimir el arrayPeople");
-  for(const el of arrayPeople)
-  {
-    console.log(el);
-  }
-
-  let stringJSON = JSON.stringify(arrayPeople);
-
-  //removeLocal();
-  saveLocal(arrayPeople);
-
-  let parentDiv = document.getElementById("fatherResults");
-
-  //We clean up the DOM
-  clearDom(parentDiv);
-
-  //we print the saved data on the DOM
-  printDom(parentDiv, arrayPeople);
-}//end of saveToArray function
-
-//function removeLocal to reove items from the local localStorage
-function removeLocal()
-{
-  localStorage.removeItem("savedPeopleList");
-}
-
-//function saveLocal to save data on local storage
-function saveLocal(_arrayPeople)
-{
-  localStorage.setItem("savedPeopleList", JSON.stringify(_arrayPeople));
-}//end of saveLocal functions
-
-//function  printDom to print the results on the dom
-function printDom(_parentDiv, _arrayPeople)
-{
-  for(const el of _arrayPeople)
-  {
-    let results = document.createElement("div.results");
-    results.innerHTML = `
-    <h2 class="mt-5"> Resultados: </h2>
-    <span>Nombre: ${el.name}</span>
-    <span>Apellido: ${el.surname}</span>
-    <span>Código: ${el.fullname}</span>
-    <span>Edad: ${el.age}</span>
-    <span>Altura: ${el.height}</span>
-    <span>Peso: ${el.weight}</span>
-    <span>IMC: ${el.IMC}</span>
-    `;
-    _parentDiv.appendChild(results);
-  }//end of for-of loop
-}//end of printDom function
-
-//function restoreData to restore the data from the localStorage to a live array
-function restoreData()
-{
-  let flag = localStorage.getItem("savedPeopleList");
-
-  //we verify if the local storage is empty
-  if(flag != null){
-    const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"));
-
-    //we restore the saved persons to the live arrayPeople
-    for(const el of parsedSavedPopleList){
-      arrayPeople.push(el);
-    }//end of for loop
-  }//end of if
-}//end of restoreData function
+////////////////////////
+//Verification functions
+////////////////////////
 
 //function verifyInput to verify that the inputs of the form are valid
 function verifyInput()
@@ -269,6 +172,140 @@ function verifyInputClass(_className)
   return _isInputValid;
 }
 
+////////////////////
+//Storage functions
+////////////////////
+
+//function removeLocal to reove items from the local localStorage
+function removeLocal()
+{
+  localStorage.removeItem("savedPeopleList");
+}
+
+//function saveLocal to save data on local storage
+function saveLocal(_arrayPeople)
+{
+  localStorage.setItem("savedPeopleList", JSON.stringify(_arrayPeople));
+}//end of saveLocal functions
+
+
+//function saveToArray to create a new person and print the results on the DOM. It has to be divided in three different functions
+function saveToArray()
+{
+  const person = new Person(); //instanciation of a new person
+  const isDuplicated = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alway undefined
+  console.log("isDuplicated: " + isDuplicated);
+
+  //if a person with the same fullname already exists...
+  if(isDuplicated === true)
+  {
+    //we'll iterate over the array until we find the element with the sane fullname
+    for(const element of arrayPeople){
+
+      //if the person already exists (according to the fullname), we update it's values
+      if(element.fullname === person.fullname){
+        element.age = person.age;
+        element.height = person.height;
+        element.weight = person.weight;
+        element.IMC = person.IMC;
+      }//end of internal if
+    }//end fo for-loop
+  }//end of external loop
+
+  //else, we add a new person to the array ---------------------> ***is this fine or should I concatenate a new array?***
+  else
+  {
+    arrayPeople.push(person);
+  }//end of else
+
+  console.log("Voy a imprimir el arrayPeople");
+  for(const el of arrayPeople)
+  {
+    console.log(el);
+  }
+
+  let stringJSON = JSON.stringify(arrayPeople);
+
+  //removeLocal();
+  saveLocal(arrayPeople);
+
+  let parentDiv = document.getElementById("fatherResults");
+
+  //We clean up the DOM
+  clearDom(parentDiv);
+
+  //we print the saved data on the DOM
+  printDom(parentDiv, arrayPeople);
+}//end of saveToArray function
+
+//function restoreData to restore the data from the localStorage to a live array
+function restoreData()
+{
+  let flag = localStorage.getItem("savedPeopleList");
+
+  //we verify if the local storage is empty
+  if(flag != null){
+    const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"));
+
+    //we restore the saved persons to the live arrayPeople
+    for(const el of parsedSavedPopleList){
+      arrayPeople.push(el);
+    }//end of for loop
+  }//end of if
+}//end of restoreData function
+
+function saveToArray()
+{
+  const person = new Person(); //instanciation of a new person
+  const isDuplicated = arrayPeople.some((el) => { return el.fullname === person.fullname;}); //we evaluate if a person with the same fullname already exists --> Flag is alway undefined
+  console.log("isDuplicated: " + isDuplicated);
+
+  //if a person with the same fullname already exists...
+  if(isDuplicated === true)
+  {
+    //we'll iterate over the array until we find the element with the sane fullname
+    for(const element of arrayPeople){
+
+      //if the person already exists (according to the fullname), we update it's values
+      if(element.fullname === person.fullname){
+        element.age = person.age;
+        element.height = person.height;
+        element.weight = person.weight;
+        element.IMC = person.IMC;
+      }//end of internal if
+    }//end fo for-loop
+  }//end of external loop
+
+  //else, we add a new person to the array ---------------------> ***is this fine or should I concatenate a new array?***
+  else
+  {
+    arrayPeople.push(person);
+  }//end of else
+
+  console.log("Voy a imprimir el arrayPeople");
+  for(const el of arrayPeople)
+  {
+    console.log(el);
+  }
+
+  let stringJSON = JSON.stringify(arrayPeople);
+
+  //removeLocal();
+  saveLocal(arrayPeople);
+
+  let parentDiv = document.getElementById("fatherResults");
+
+  //We clean up the DOM
+  clearDom(parentDiv);
+
+  //we print the saved data on the DOM
+  printDom(parentDiv, arrayPeople);
+}//end of saveToArray function
+
+//////////////////
+//Dialog functinos
+//////////////////
+
 //function loadComplete() to issue a sweetalert if all the data has been properly updated
 function loadComplete()
 {
@@ -289,6 +326,40 @@ function loadUncomplete() {
     icon: "error",
   });
 }
+
+
+////////////////
+//DOM functions
+////////////////
+
+//function  printDom to print the results on the dom
+function printDom(_parentDiv, _arrayPeople)
+{
+  for(const el of _arrayPeople)
+  {
+    let results = document.createElement("div.results");
+    results.innerHTML = `
+    <h2 class="mt-5"> Resultados: </h2>
+    <span>Nombre: ${el.name}</span>
+    <span>Apellido: ${el.surname}</span>
+    <span>Código: ${el.fullname}</span>
+    <span>Edad: ${el.age}</span>
+    <span>Altura: ${el.height}</span>
+    <span>Peso: ${el.weight}</span>
+    <span>IMC: ${el.IMC}</span>
+    `;
+    _parentDiv.appendChild(results);
+  }//end of for-of loop
+}//end of printDom function
+
+//function clearDom to clear the results added to the DOM on a previous event
+function clearDom(_parentDiv)
+{
+  while(_parentDiv.firstChild)
+  {
+    _parentDiv.removeChild(_parentDiv.firstChild);
+  }//end of while
+}//end of function
 
 ////////////////////////////////////////////////////////////////////////////////
 //Here come the classes
@@ -319,8 +390,18 @@ const arrayPeople = [];
 const DateTime = luxon.DateTime;
 const Interval = luxon.Interval;
 
-restoreData();
+restoreData()
 
-let myButton = document.getElementById("buttonCalculate");
+let myButtonCalculate = document.getElementById("buttonCalculate");
+let myButtonPrint = document.getElementById("buttonPrint");
 
-myButton.addEventListener("click", verifyInput);
+myButtonCalculate.addEventListener("click", verifyInput);
+//myButtonPrint.addEventListener("click", () => console.log("Cumbia!"));
+myButtonPrint.addEventListener("click", () => {clearDom(fatherResults); printDom(fatherResults, arrayPeople)});
+
+////////////////////////////////////////////////////////////////////////////////
+
+let myTabButtonInput = document.getElementById("form__tab__input");
+let myTabButtonResults = document.getElementById("form__tab__results");
+
+/////////////////////////////////////////////////////////////////////////////////

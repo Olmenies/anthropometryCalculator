@@ -17,9 +17,11 @@ img
   object-fit: contain;
 }
 
-.form
+.form__input
 {
   border: solid 2px black;
+  background: tomato;
+  padding: 1rem 3rem;
 }
 
 .container__tab
@@ -33,25 +35,9 @@ img
   padding: 0;
 }
 
-.tabs
-{
-  list-style: none;
-  margin-left: 0;
-  padding-left: 0;
-}
-
-.tabs a
-{
-  color: black;
-  text-decoration: none;
-}
 
 .form__tab__button
 {
-  display: inline;
-  border: solid 2px black;
-  padding: 1rem;
-  margin: 0;
   background-color: tomato;
 }
 
@@ -70,12 +56,6 @@ img
 {
   text-align: center;
   list-style: inside;
-}
-
-.form
-{
-  background: tomato;
-  padding: 1rem 3rem;
 }
 
 .dontDisplay
