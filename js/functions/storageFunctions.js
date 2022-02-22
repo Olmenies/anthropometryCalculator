@@ -31,6 +31,8 @@ function saveToArray()
         element.IMC = person.IMC;
       }//end of internal if
     }//end fo for-loop
+
+    clientUpdate();
   }//end of external loop
 
   //else, we add a new person to the array ---------------------> ***is this fine or should I concatenate a new array?***

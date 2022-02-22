@@ -7,7 +7,7 @@ const calcIMC = (_height, _weight) => { return (_weight / Math.pow(centimeterToM
 //function createCode to create the code for the person
 function createCode(_name, _surname)
 {
-  _name = _name.replaceAll(" ", ".");
-  _surname = _surname.replaceAll(" ", ".");
+  _name = _name.replaceAll(" ", ".").toUpperCase();
+  _surname = _surname.replaceAll(" ", ".").toUpperCase();
   return (_name + "." + _surname);
 }//end of createCode function

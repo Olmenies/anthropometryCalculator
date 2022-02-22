@@ -19,3 +19,12 @@ function loadUncomplete() {
     icon: "error",
   });
 }
+
+function clientUpdate() {
+  swal
+  ({
+    title: "Cliente actualizado",
+    text: "La información del cliente fue actualizada correctamente",
+    icon: "success",
+  });
+}
