@@ -1,5 +1,5 @@
-//function  printDom to print the results on the dom
-function printDom(_parentDiv, _arrayPeople)
+//function  printAllResultsDOM to print the results on the dom
+function printAllResultsDOM(_parentDiv, _arrayPeople)
 {
   for(const el of _arrayPeople)
   {
@@ -7,7 +7,7 @@ function printDom(_parentDiv, _arrayPeople)
     results.classList.add("results");
     results.innerHTML = `
     <h2> ${el.name} ${el.surname} </h2>
-    <p>Código: ${el.fullname}</p>
+    <p>Código: ${el.code}</p>
     <p>Edad: ${el.age} años</p>
     <p>Altura: ${el.height}cm</p>
     <p>Peso: ${el.weight}kg</p>
@@ -15,7 +15,7 @@ function printDom(_parentDiv, _arrayPeople)
     `;
     _parentDiv.appendChild(results);
   }//end of for-of loop
-}//end of printDom function
+}//end of printAllResultsDOM function
 
 //function clearDom to clear the results added to the DOM on a previous event
 function clearDom(_parentDiv)
@@ -25,3 +25,18 @@ function clearDom(_parentDiv)
     _parentDiv.removeChild(_parentDiv.firstChild);
   }//end of while
 }//end of function
+
+function printDOM(_parentDiv, _person)
+{
+  let results = document.createElement("div");
+  results.classList.add("results");
+  results.innerHTML = `
+  <h2> ${_person.name} ${_person.surname} </h2>
+  <p>Código: ${_person.code}</p>
+  <p>Edad: ${_person.age} años</p>
+  <p>Altura: ${_person.height}cm</p>
+  <p>Peso: ${_person.weight}kg</p>
+  <p>IMC: ${_person.IMC}</p>
+  `;
+  _parentDiv.appendChild(results);
+}

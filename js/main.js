@@ -20,7 +20,7 @@ let myButtonPrint = document.getElementById("buttonPrint");
 let myButtonClean = document.getElementById("buttonClean");
 
 myButtonCalculate.addEventListener("click", verifyInput);
-myButtonPrint.addEventListener("click", () => {clearDom(fatherResults); printDom(fatherResults, arrayPeople)});
+myButtonPrint.addEventListener("click", () => {clearDom(fatherResults); printAllResultsDOM(fatherResults, arrayPeople)});
 myButtonClean.addEventListener("click", () => {clearDom(fatherResults)});
 
 ////////////////////////////////////////////////////////////////////////////////
