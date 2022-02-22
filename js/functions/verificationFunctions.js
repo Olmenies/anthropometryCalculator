@@ -23,32 +23,32 @@ function verifyInput()
     isInputValid = null;
     isInputValid ?? loadUncomplete(); return;
   }
-}
-else
-{
-  isInputValid = true;
-}//end of if
 
-isInputValid = verifyInputClass("inputHeight");
-if(isInputValid === false)
-{
-  loadUncomplete();
-  return;
-}
+  else
+  {
+    isInputValid = true;
+  }//end of if
 
-isInputValid = verifyInputClass("inputWeight");
-if(isInputValid === false)
-{
-  loadUncomplete();
-  return;
-}
-if(isInputValid)
-{
-  loadComplete();
-  saveToArray();
-} else {
-  loadUncomplete();
-}
+  isInputValid = verifyInputClass("inputHeight");
+  if(isInputValid === false)
+  {
+    loadUncomplete();
+    return;
+  }
+
+  isInputValid = verifyInputClass("inputWeight");
+  if(isInputValid === false)
+  {
+    loadUncomplete();
+    return;
+  }
+  if(isInputValid)
+  {
+    loadComplete();
+    saveToArray();
+  } else {
+    loadUncomplete();
+  }
 }//end of verifyInput function
 
 //function verifyInputClass to verify the inputs caught by getElementsByClassName()
