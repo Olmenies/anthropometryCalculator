@@ -66,6 +66,18 @@ function restoreData()
 {
   let flag = localStorage.getItem("savedPeopleList");
 
+////////////////////////////////////////////////////////////////////////////////
+//Next lines simulate a look for the users's patients on a database
+lookForStarted();
+new Promise((resolve, reject) =>
+{
+  setTimeout(() =>
+  {
+    lookForCompleted()
+  },2000);
+});
+////////////////////////////////////////////////////////////////////////////////
+
   //we verify if the local storage is empty
   if(flag != null){
     const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"));

@@ -25,7 +25,7 @@ myButtonClean.addEventListener("click", () => {clearDom(fatherResults)});
 
 ////////////////////////////////////////////////////////////////////////////////
 
-let myTabButtonInput = document.getElementById("form__tab__input");
-let myTabButtonResults = document.getElementById("form__tab__results");
+let myTabButtonSearch = document.getElementById("form__tab__search");
+myTabButtonSearch.addEventListener("click", utilityTBD);
 
 /////////////////////////////////////////////////////////////////////////////////

@@ -28,3 +28,39 @@ function clientUpdate() {
     icon: "success",
   });
 }
+
+function clientUpdate() {
+  swal
+  ({
+    title: "Cliente actualizado",
+    text: "La información del cliente fue actualizada correctamente",
+    icon: "success",
+  });
+}
+
+function utilityTBD() {
+  swal
+  ({
+    title: "Whoops!",
+    text: "Todavía estamos trabajando en esta función, gracias por tu paciencia :)",
+    icon: "warning",
+  });
+}
+
+function lookForStarted() {
+  swal
+  ({
+    title: "¡Bienvenido!",
+    text: "Danos un momemto mientras buscamos la información de tus pacientes",
+    icon: "info",
+  });
+}
+
+function lookForCompleted() {
+  swal
+  ({
+    title: "¡Gracias por la espera!",
+    text: "La información ya se recuperó y estamos listos para empezar a trabajar",
+    icon: "success",
+  });
+}

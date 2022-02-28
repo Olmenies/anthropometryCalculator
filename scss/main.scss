@@ -26,16 +26,11 @@ h1
   display: none;
 }
 
-.form__input
+.container__form,S
 {
   border: solid 2px black;
   background: #A13838;
   padding: 1rem 3rem;
-}
-
-.container__tab
-{
-  padding-left: 0;
 }
 
 .form__tab__header
@@ -88,6 +83,11 @@ h1
 .results h2
 {
   border-bottom: 2px solid white;
+}
+
+.dontDisplay
+{
+  display: none;
 }
 
 footer
