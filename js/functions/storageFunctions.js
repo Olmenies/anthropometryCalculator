@@ -14,7 +14,7 @@ function saveLocal(_arrayPeople)
 function saveToArray()
 {
   const person = new Person(); //instanciation of a new person
-  const isDuplicated = arrayPeople.some((el) => { return el.code === person.code;}); //we evaluate if a person with the same code already exists --> Flag is alway undefined
+  const isDuplicated = arrayPeople.some((el) => { return el.code === person.code;}); //we evaluate if a person with the same code already exists
   console.log("isDuplicated: " + isDuplicated);
 
   //if a person with the same code already exists...
@@ -68,15 +68,19 @@ function restoreData()
 
   simulateLookForData(true).then(lookForCompleted).catch(lookForNotCompleted);
 
+
   //We load the data from the ../data/patients.json file
   fetch("../data/patients.json")
   .then((resp) => resp.json())
   .then((data) =>
   {
     for(const patient of data){
-      arrayPeople.push(patient);
-    }
-  });
+      //arrayPeople.push(patient);
+      const isDuplicated = arrayPeople.some((el) => { return el.code === patient.code;}); //we evaluate if a patient with the same code already exists
+      !isDuplicated ? arrayPeople.push(patient) && saveLocal(arrayPeople): null; //we save our actual array on the local storage
+    }//end of for
+  });//end of then
+
 
   //////////////////////////////////////////////////////////////////////////////
 
