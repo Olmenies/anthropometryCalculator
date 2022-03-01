@@ -26,6 +26,7 @@ function clearDom(_parentDiv)
   }//end of while
 }//end of function
 
+//function printDOM to print the results of the curren person on the DOM
 function printDOM(_parentDiv, _person)
 {
   let results = document.createElement("div");

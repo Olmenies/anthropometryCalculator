@@ -66,17 +66,19 @@ function restoreData()
 {
   let flag = localStorage.getItem("savedPeopleList");
 
-////////////////////////////////////////////////////////////////////////////////
-//Next lines simulate a look for the users's patients on a database
-lookForStarted();
-new Promise((resolve, reject) =>
-{
-  setTimeout(() =>
+  simulateLookForData(true).then(lookForCompleted).catch(lookForNotCompleted);
+
+  //We load the data from the ../data/patients.json file
+  fetch("../data/patients.json")
+  .then((resp) => resp.json())
+  .then((data) =>
   {
-    lookForCompleted()
-  },2000);
-});
-////////////////////////////////////////////////////////////////////////////////
+    for(const patient of data){
+      arrayPeople.push(patient);
+    }
+  });
+
+  //////////////////////////////////////////////////////////////////////////////
 
   //we verify if the local storage is empty
   if(flag != null){
@@ -88,3 +90,17 @@ new Promise((resolve, reject) =>
     }//end of for loop
   }//end of if
 }//end of restoreData function
+
+//function simulateLookForData to simulate that we're looking for data in a database
+function simulateLookForData(_value)
+{
+  lookForStarted();
+
+  return new Promise((resolve, reject) =>
+  {
+    setTimeout(() =>
+    {
+      (_value === true) ? resolve(true) : reject(false);
+    },2000);//end of setTimeout
+  });//end of promise
+}//end of simulateLookForData

@@ -5,7 +5,6 @@ class Person
   {
     this.name = dataInput("name");
     this.surname = dataInput("surname");
-    //this.fullname =this.name.toUpperCase() + "." this.surname.toUpperCase();
     this.code = createCode(this.name, this.surname);
     this.age = dataInput("age");
     this.height = parseFloat(dataInput("height"));
