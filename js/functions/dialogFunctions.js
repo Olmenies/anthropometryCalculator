@@ -4,7 +4,7 @@ function loadComplete()
 {
   swal
   ({
-    title: "Carga completa",
+    title: "Carga cargada con éxito",
     text: "Estamos calculando los resultados",
     icon: "success",
   });

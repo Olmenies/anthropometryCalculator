@@ -68,8 +68,8 @@ function restoreData()
 
   simulateLookForData(true).then(lookForCompleted).catch(lookForNotCompleted);
 
-
-  //We load the data from the ../data/patients.json file
+  //We load the data from the ../data/patients.json file -> Refactored below
+  /*
   fetch("../data/patients.json")
   .then((resp) => resp.json())
   .then((data) =>
@@ -80,10 +80,28 @@ function restoreData()
       !isDuplicated ? arrayPeople.push(patient) && saveLocal(arrayPeople): null; //we save our actual array on the local storage
     }//end of for
   });//end of then
+  */
 
+  //We load the data from the ../data/patients.json file
+  const fetchLocalData = async() =>
+  {
+    try {
+      let patients = await fetch("../data/patients.json");
+      let data = patients.json();
+      for(const patient of data){
+        //arrayPeople.push(patient);
+        const isDuplicated = arrayPeople.some((el) => { return el.code === patient.code;}); //we evaluate if a patient with the same code already exists
+        !isDuplicated ? arrayPeople.push(patient) && saveLocal(arrayPeople): null; //we save our actual array on the local storage
+      }//end of for
 
-  //////////////////////////////////////////////////////////////////////////////
+    } catch (e) {
+      console.error(e);
 
+    } finally {
+      console.log("Fetch finished");
+    }
+  }
+  
   //we verify if the local storage is empty
   if(flag != null){
     const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"));
