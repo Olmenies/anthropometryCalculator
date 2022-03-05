@@ -1,0 +1,5 @@
+[
+  {"name": "Jorge Eduardo", "surname": "Perrón", "code": "JORGE.EDUARDO.PERRÓN", "age": 50, "height": 180, "weight": 90, "IMC": 27.8},
+  {"name": "Jorge Eduardo", "surname": "Pepe", "code": "JORGE.EDUARDO.PEPE", "age": 50, "height": 180, "weight": 90, "IMC": 27.8},
+  {"name": "Jorge Miguel", "surname": "Blanco", "code": "JORGE.MIGUEL.BLANCO", "age": 17, "height": 170, "weight": 70, "IMC": 24.2}
+]

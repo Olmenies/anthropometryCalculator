@@ -101,7 +101,7 @@ function restoreData()
       console.log("Fetch finished");
     }
   }
-  
+
   //we verify if the local storage is empty
   if(flag != null){
     const parsedSavedPopleList = JSON.parse(localStorage.getItem("savedPeopleList"));
